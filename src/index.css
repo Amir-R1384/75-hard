@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	font-family: 'Poppins', sans-serif;
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	@apply text-dark;
+}
+
+@layer base {
+	input {
+		@apply bg-transparent;
+	}
+
+	input:disabled {
+		@apply text-black opacity-100;
+	}
+}
+
+@layer components {
+	.title {
+		@apply text-xl text-dark;
+	}
+
+	.habit {
+		@apply border z-10 transition-all duration-1000 overflow-hidden border-dark rounded-xl text-lg py-2 px-3 items-center text-dark flex justify-between flex-1;
+	}
+
+	.icon-button {
+		@apply border border-dark p-px bg-gray-50 transition-scale;
+	}
+
+	.expandable {
+		@apply w-full flex flex-col border-dark overflow-hidden transition-all duration-700 border rounded-xl text-dark;
+	}
+
+	.workout {
+		@apply w-full py-2 grid grid-cols-[2fr,1fr,2fr] px-2 gap-2 text-xs border-t border-gray-300 text-gray-500;
+	}
+
+	.workout > input,
+	.workout > div {
+		@apply text-center bg-transparent;
+	}
+}
+
+@layer utilities {
+	.inset-bottom {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+	.inset-top {
+		padding-top: calc(10px + env(safe-area-inset-top));
+	}
+
+	.transition-scale {
+		@apply active:scale-110 transition-transform;
+	}
+}

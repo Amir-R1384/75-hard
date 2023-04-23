@@ -1,0 +1,9 @@
+{
+	"short_name": "75 Hard",
+	"name": "75 Hard",
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"theme_color": "white",
+	"description": "Self growth app"
+}
