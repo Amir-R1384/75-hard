@@ -60,7 +60,7 @@ export default function Habits() {
 
 			<div className="gap-y-3 flex flex-col transition-all">
 				<div className="flex justify-between stroke-dark items-center w-full mb-1">
-					<div className="title">50 days left!</div>
+					<div className="title">Habits</div>
 					<PlusButton inverse={habitInput.visible} onClick={toggleHabitInput} />
 				</div>
 
