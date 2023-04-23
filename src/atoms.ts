@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { Habit, Recipe, User, Workout } from './types'
+import { Exercise, Habit, Recipe, User } from './types'
 
 export const loadingAtom = atom({
 	key: 'loadingAtom',
@@ -30,13 +30,13 @@ export const calendarOpenAtom = atom({
 	default: false
 })
 
-export const workoutsAtom = atom<{ name: string; workouts: Workout[] }[]>({
+export const workoutsAtom = atom<{ name: string; exercises: Exercise[] }[]>({
 	key: 'workoutsAtom',
 
 	default: [
 		{
 			name: 'Push Day',
-			workouts: [
+			exercises: [
 				{ name: 'Bench Press', setsAndReps: '3 - 5', weight: '100 lbs' },
 				{ name: 'Incline bench', setsAndReps: '3 - 5', weight: '80 lbs' }
 			]
@@ -49,6 +49,7 @@ export const recipesAtom = atom<Recipe[]>({
 	default: [
 		{
 			name: 'Protein Shake',
+			imageName: 'placeholder.png',
 			category: 'snack',
 			ingredients: ['500ml of milk', '1 banana', '1 scoop of protein powder'],
 			instructions: ['Mix everything in a blender', 'Blend', 'Enjoy :)']
