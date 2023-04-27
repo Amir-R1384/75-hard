@@ -36,7 +36,10 @@ export default function CalendarCell({ dayOrDate, percentage, selected }: Props)
 					/>
 				</svg>
 			</div>
-			<span className={`z-10 ${percentage === 100 ? 'text-white' : 'text-dark'}`}>
+			<span
+				className={`z-10 transition-colors duration-1000 ${
+					percentage === 100 ? 'text-white' : 'text-dark'
+				}`}>
 				{dayOrDate}
 			</span>
 		</div>

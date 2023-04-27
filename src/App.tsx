@@ -2,12 +2,13 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { loadingAtom } from './atoms'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { loadingAtom, userAtom } from './atoms'
 import { auth, authenticate, usersCollection } from './firebase'
 
 export default function App() {
 	const navigate = useNavigate()
+	const setUser = useSetRecoilState(userAtom)
 	const [loading, setLoading] = useRecoilState(loadingAtom)
 
 	useEffect(() => {
@@ -29,11 +30,15 @@ export default function App() {
 			const { uid } = result!.user
 
 			if ((await doesUserExist(uid)) === false) {
-				setDoc(doc(usersCollection, uid), {
+				const blankUser = {
 					habits: {},
+					recentHabits: [],
 					workouts: [],
 					recipes: []
-				})
+				}
+
+				await setDoc(doc(usersCollection, uid), blankUser)
+				setUser(blankUser)
 			}
 
 			navigate('/app/habits')
