@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 export default function Footer() {
 	return (
-		<div className="flex fixed backdrop-blur-lg pt-3 bottom-0 justify-around items-center inset-bottom text-dark text-sm w-full">
+		<div className="flex fixed backdrop-blur-lg pt-3 bottom-0 justify-around items-center inset-bottom text-dark text-sm w-full z-50">
 			<FooterLink name="Habits" icon="chart" />
 			<FooterLink name="Workouts" icon="dumbbell" />
 			<FooterLink name="Recipes" icon="book" />

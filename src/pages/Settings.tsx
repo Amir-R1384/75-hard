@@ -1,13 +1,19 @@
 import { signOut as FB_signOut } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { userStateReadyAtom } from '../atoms'
 import { LeftIcon } from '../components/icons'
 import { auth } from '../firebase'
 
 export default function Settings() {
 	const navigate = useNavigate()
+	const setUserStateReady = useSetRecoilState(userStateReadyAtom)
 
 	function signOut() {
-		FB_signOut(auth).then(() => navigate('/'))
+		FB_signOut(auth).then(() => {
+			setUserStateReady(false)
+			navigate('/')
+		})
 	}
 
 	return (
