@@ -7,13 +7,18 @@ import { Recipe as RecipeType } from '../types'
 import { CheckmarkIcon, MinusIcon, PencilIcon, PlusIcon } from './icons'
 import TrashIcon from './icons/Trash.Icon'
 
+interface Props extends RecipeType {
+	isNew?: boolean
+}
+
 export default function Recipe({
 	name,
 	ingredients,
 	instructions,
 	category,
-	imageName
-}: RecipeType) {
+	imageName,
+	isNew
+}: Props) {
 	const setUser = useSetRecoilState(userAtom)
 	const [expanded, setExpanded] = useState(false)
 	const [editMode, setEditMode] = useState(false)
@@ -92,6 +97,13 @@ export default function Recipe({
 		})
 	}
 
+	useEffect(() => {
+		if (isNew) {
+			setExpanded(true)
+			setEditMode(true)
+		}
+	}, [])
+
 	const inputsClass = `${
 		editMode && 'border-gray-200 border  py-1 px-2'
 	} transition-all duration-500 rounded-lg my-0.5 w-full`
@@ -123,9 +135,10 @@ export default function Recipe({
 				<input
 					type="text"
 					disabled={!editMode}
+					placeholder="Recipe name..."
 					className={`${
 						editMode && 'border border-gray-200 p-1'
-					} text-lg font-medium transition-all duration-700 w-full rounded-lg`}
+					} text-lg font-medium placeholder-gray-400 transition-all duration-700 w-full rounded-lg`}
 					value={inputs.name}
 					onClick={e => e.stopPropagation()}
 					onChange={e => setInputs(prev => ({ ...prev, name: e.target.value }))}

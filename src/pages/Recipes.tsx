@@ -26,7 +26,8 @@ export default function Recipes() {
 					imageName: 'placeholder.png',
 					category,
 					ingredients: [],
-					instructions: []
+					instructions: [],
+					isNew: true
 				}
 			]
 		}))

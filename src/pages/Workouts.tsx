@@ -7,7 +7,10 @@ export default function Workouts() {
 	const [user, setUser] = useRecoilState(userAtom)
 
 	function addWorkout() {
-		setUser(prev => ({ ...prev, workouts: [...prev.workouts, { name: '', exercises: [] }] }))
+		setUser(prev => ({
+			...prev,
+			workouts: [...prev.workouts, { name: '', exercises: [], isNew: true }]
+		}))
 	}
 
 	return (

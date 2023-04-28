@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { userAtom } from '../atoms'
 import { Exercise as ExerciseType } from '../types'
@@ -9,9 +9,10 @@ import TrashIcon from './icons/Trash.Icon'
 interface Props {
 	name: string
 	exercises: ExerciseType[]
+	isNew?: boolean
 }
 
-export default function Workout({ name, exercises }: Props) {
+export default function Workout({ name, exercises, isNew }: Props) {
 	const [expanded, setExpanded] = useState(false)
 	const [editMode, setEditMode] = useState(false)
 	const [inputs, setInputs] = useState({ name, exercises })
@@ -54,6 +55,13 @@ export default function Workout({ name, exercises }: Props) {
 		}))
 	}
 
+	useEffect(() => {
+		if (isNew) {
+			setExpanded(true)
+			setEditMode(true)
+		}
+	}, [])
+
 	return (
 		<div className={`${expanded ? 'bg-white' : 'bg-green-light'} expandable`}>
 			<div
@@ -70,9 +78,10 @@ export default function Workout({ name, exercises }: Props) {
 					<input
 						type="text"
 						disabled={!editMode}
+						placeholder="Workout name..."
 						className={`${
 							editMode && 'border border-gray-200 p-1'
-						} text-lg font-medium transition-all duration-700 w-full rounded-lg`}
+						} text-lg font-medium placeholder-gray-400 transition-all duration-700 w-full rounded-lg`}
 						value={inputs.name}
 						onClick={e => e.stopPropagation()}
 						onChange={e => setInputs(prev => ({ ...prev, name: e.target.value }))}
@@ -85,7 +94,7 @@ export default function Workout({ name, exercises }: Props) {
 			</div>
 
 			<div
-				style={{ maxHeight: expanded ? `${exercises.length * 40 + 100}px` : 0 }}
+				style={{ maxHeight: expanded ? `${inputs.exercises.length * 40 + 100}px` : 0 }}
 				className={`${
 					expanded ? ' mt-3 opacity-100' : 'mt-0 opacity-0'
 				} transition-all duration-500 overflow-hidden`}>
