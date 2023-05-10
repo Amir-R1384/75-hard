@@ -5,6 +5,11 @@ export interface Habit {
 	completed: boolean
 }
 
+export interface Workout {
+	name: string
+	exercises: Exercise[]
+}
+
 export interface Exercise {
 	name: string
 	setsAndReps: string
@@ -22,6 +27,6 @@ export interface Recipe {
 export interface User {
 	recentHabits: Habit[]
 	habits: { [key: string]: Habit[] }
-	workouts: { name: string; exercises: Exercise[] }[]
+	workouts: Workout[]
 	recipes: Recipe[]
 }
