@@ -114,10 +114,10 @@ export default function Recipe({
 				onChange={onImageInputChange}
 				disabled={!editMode}
 				className="hidden"
-				id="imageInput"
+				id={`${category}-${name}`}
 				type="file"></input>
 			<label
-				htmlFor="imageInput"
+				htmlFor={`${category}-${name}`}
 				style={{ backgroundImage: `url(${imageUrl})` }}
 				className={`${expanded ? 'h-32 border-b' : 'h-0 border-0'} ${
 					editMode && 'brightness-75 blur-[1px]'
