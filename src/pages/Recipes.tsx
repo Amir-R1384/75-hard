@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+import { v4 as uuid } from 'uuid'
 import { userAtom } from '../atoms'
 import { Recipe } from '../components'
 import { LeftIcon, PlusIcon } from '../components/icons'
@@ -22,6 +23,7 @@ export default function Recipes() {
 			recipes: [
 				...prev.recipes,
 				{
+					id: uuid(),
 					name: '',
 					imageName: 'placeholder.png',
 					category,

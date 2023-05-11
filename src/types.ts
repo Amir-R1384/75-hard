@@ -6,6 +6,7 @@ export interface Habit {
 }
 
 export interface Workout {
+	id: string
 	name: string
 	exercises: Exercise[]
 }
@@ -17,6 +18,7 @@ export interface Exercise {
 }
 
 export interface Recipe {
+	id: string
 	name: string
 	ingredients: string[]
 	instructions: string[]

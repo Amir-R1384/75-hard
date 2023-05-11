@@ -1,6 +1,6 @@
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { userAtom } from '../atoms'
 import { storage } from '../firebase'
 import { Recipe as RecipeType } from '../types'
@@ -12,6 +12,7 @@ interface Props extends RecipeType {
 }
 
 export default function Recipe({
+	id,
 	name,
 	ingredients,
 	instructions,
@@ -19,7 +20,7 @@ export default function Recipe({
 	imageName,
 	isNew
 }: Props) {
-	const setUser = useSetRecoilState(userAtom)
+	const [user, setUser] = useRecoilState(userAtom)
 	const [expanded, setExpanded] = useState(false)
 	const [editMode, setEditMode] = useState(false)
 	const [inputs, setInputs] = useState({ name, ingredients, instructions, imageName })
@@ -57,8 +58,8 @@ export default function Recipe({
 	function saveRecipe() {
 		setUser(prev => {
 			const newArray = [...prev.recipes]
-			const targetRecipe = prev.recipes.find(recipe => recipe.name === name)!
-			newArray.splice(newArray.indexOf(targetRecipe), 1, { ...inputs, category })
+			const targetRecipe = prev.recipes.find(recipe => recipe.id === id)!
+			newArray.splice(newArray.indexOf(targetRecipe), 1, { id, category, ...inputs })
 			return { ...prev, recipes: newArray }
 		})
 	}
@@ -68,7 +69,7 @@ export default function Recipe({
 
 		setUser(prev => {
 			const newArray = [...prev.recipes]
-			const targetRecipeIndex = prev.recipes.findIndex(recipe => recipe.name === name)
+			const targetRecipeIndex = prev.recipes.findIndex(recipe => recipe.id === id)
 			newArray.splice(targetRecipeIndex, 1)
 			return { ...prev, recipes: newArray }
 		})
@@ -103,6 +104,18 @@ export default function Recipe({
 			setEditMode(true)
 		}
 	}, [])
+
+	useEffect(() => {
+		const { name, ingredients, instructions, imageName } = user.recipes.find(
+			recipe => recipe.id === id
+		)!
+		setInputs({ name, ingredients, instructions, imageName })
+	}, [user])
+
+	useEffect(() => {
+		const imageRef = ref(storage, `/${inputs.imageName}`)
+		getDownloadURL(imageRef).then(url => setImageUrl(url))
+	}, [inputs])
 
 	const inputsClass = `${
 		editMode && 'border-gray-200 border  py-1 px-2'

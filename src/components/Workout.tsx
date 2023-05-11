@@ -1,29 +1,27 @@
 import { MouseEvent, useEffect, useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { userAtom } from '../atoms'
-import { Exercise as ExerciseType } from '../types'
+import { Workout as WorkoutType } from '../types'
 import Exercise from './Exercise'
 import { CheckmarkIcon, PencilIcon, PlusIcon } from './icons'
 import TrashIcon from './icons/Trash.Icon'
 
-interface Props {
-	name: string
-	exercises: ExerciseType[]
+interface Props extends WorkoutType {
 	isNew?: boolean
 }
 
-export default function Workout({ name, exercises, isNew }: Props) {
+export default function Workout({ id, name, exercises, isNew }: Props) {
 	const [expanded, setExpanded] = useState(false)
 	const [editMode, setEditMode] = useState(false)
 	const [inputs, setInputs] = useState({ name, exercises })
-	const setUser = useSetRecoilState(userAtom)
+	const [user, setUser] = useRecoilState(userAtom)
 
 	function deleteWorkout(e: MouseEvent<HTMLButtonElement>) {
 		e.stopPropagation()
 
 		setUser(prev => {
 			const newArray = [...prev.workouts]
-			const targetWorkoutIndex = prev.workouts.findIndex(workout => workout.name === name)
+			const targetWorkoutIndex = prev.workouts.findIndex(workout => workout.id === id)
 			newArray.splice(targetWorkoutIndex, 1)
 			return { ...prev, workouts: newArray }
 		})
@@ -42,8 +40,8 @@ export default function Workout({ name, exercises, isNew }: Props) {
 	function saveWorkout() {
 		setUser(prev => {
 			const newArray = [...prev.workouts]
-			const targetWorkout = prev.workouts.find(workout => workout.name === name)!
-			newArray.splice(newArray.indexOf(targetWorkout), 1, inputs)
+			const targetWorkout = prev.workouts.find(workout => workout.id === id)!
+			newArray.splice(newArray.indexOf(targetWorkout), 1, { id, ...inputs })
 			return { ...prev, workouts: newArray }
 		})
 	}
@@ -61,6 +59,11 @@ export default function Workout({ name, exercises, isNew }: Props) {
 			setEditMode(true)
 		}
 	}, [])
+
+	useEffect(() => {
+		const { name, exercises } = user.workouts.find(workout => workout.id === id)!
+		setInputs({ name, exercises })
+	}, [user])
 
 	return (
 		<div className={`${expanded ? 'bg-white' : 'bg-green-light'} expandable`}>

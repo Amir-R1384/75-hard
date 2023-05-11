@@ -1,4 +1,5 @@
 import { useRecoilState } from 'recoil'
+import { v4 as uuid } from 'uuid'
 import { userAtom } from '../atoms'
 import { Workout } from '../components'
 import { PlusIcon } from '../components/icons'
@@ -9,7 +10,7 @@ export default function Workouts() {
 	function addWorkout() {
 		setUser(prev => ({
 			...prev,
-			workouts: [...prev.workouts, { name: '', exercises: [], isNew: true }]
+			workouts: [...prev.workouts, { id: uuid(), name: '', exercises: [], isNew: true }]
 		}))
 	}
 
