@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { loadingAtom, userAtom } from './atoms'
+import { Button } from './components'
 import { auth, authenticate, usersCollection } from './firebase'
 
 export default function App() {
@@ -54,11 +55,11 @@ export default function App() {
 				<div className="text-dark text-xl drop-shadow-md">
 					A journey to regain your mental health
 				</div>
-				<button
+				<Button
 					onClick={signIn}
 					className="rounded-xl font-medium hover:brightness-95 transition-all active:brightness-90 duration-200 bg-green border-2 border-dark text-white px-5 py-2">
 					Sign up with Google
-				</button>
+				</Button>
 			</div>
 		</div>
 	)

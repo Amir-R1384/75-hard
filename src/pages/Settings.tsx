@@ -2,6 +2,7 @@ import { signOut as FB_signOut } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { userStateReadyAtom } from '../atoms'
+import { Button } from '../components'
 import { LeftIcon } from '../components/icons'
 import { auth } from '../firebase'
 
@@ -24,11 +25,11 @@ export default function Settings() {
 				</Link>
 				<div className="title">Settings</div>
 			</div>
-			<button
+			<Button
 				onClick={signOut}
 				className="bg-red-50 border border-red-500 text-red-500 font-medium py-2 text-center rounded-xl w-full">
 				Sign out
-			</button>
+			</Button>
 		</div>
 	)
 }

@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { v4 as uuid } from 'uuid'
 import { userAtom } from '../atoms'
-import { Recipe } from '../components'
+import { Button, Recipe } from '../components'
 import { LeftIcon, PlusIcon } from '../components/icons'
 import { RecipeCategory } from '../types'
 
@@ -44,9 +44,9 @@ export default function Recipes() {
 					</Link>
 					<div className="title">{titles[category]}</div>
 				</div>
-				<button onClick={addRecipe} className="icon-button w-7 rounded-[10px]">
+				<Button onClick={addRecipe} className="icon-button w-7 rounded-[10px]">
 					<PlusIcon />
-				</button>
+				</Button>
 			</div>
 			{user.recipes
 				.filter(recipe => recipe.category === category)

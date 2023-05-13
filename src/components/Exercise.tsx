@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react'
 import { Exercise as ExerciseType } from '../types'
+import Button from './Button'
 import { MinusIcon } from './icons'
 
 interface Props extends ExerciseType {
@@ -40,13 +41,13 @@ export default function Exercise({ name, setsAndReps, weight, editMode, setInput
 
 	return (
 		<div className="!flex items-center workout">
-			<button
+			<Button
 				onClick={deleteExercise}
 				className={` ${
 					editMode && '!w-4'
 				} box-content stroke-red-400 stroke-2 scale-y-150 duration-300 w-0  transition-all translate border-red-400 rounded-lg`}>
 				<MinusIcon />
-			</button>
+			</Button>
 			<div className="workout !border-0 !p-0">
 				<input
 					className={workoutInputClassName}

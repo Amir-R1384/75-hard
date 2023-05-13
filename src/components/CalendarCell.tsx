@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Button from './Button'
 
 interface Props {
 	dayOrDate: string
@@ -17,9 +18,9 @@ export default function CalendarCell({ dayOrDate, percentage, selected }: Props)
 	}, [percentage])
 
 	return (
-		<div
+		<Button
 			className={`
-			 w-9 h-9 grid relative overflow-hidden transition-all transition-scale border place-content-center text-gray-800 rounded-full  border-dark ${
+			 w-9 h-9 grid relative overflow-hidden bg-white border place-content-center text-gray-800 rounded-full  border-dark ${
 					selected && 'border-2 shadow-md'
 				}`}>
 			<div
@@ -42,6 +43,6 @@ export default function CalendarCell({ dayOrDate, percentage, selected }: Props)
 				}`}>
 				{dayOrDate}
 			</span>
-		</div>
+		</Button>
 	)
 }

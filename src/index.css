@@ -21,6 +21,10 @@
 	input:disabled {
 		@apply text-black opacity-100;
 	}
+
+	button {
+		@apply transition-all duration-200;
+	}
 }
 
 @layer components {
@@ -29,11 +33,11 @@
 	}
 
 	.habit {
-		@apply border z-10 transition-all duration-1000 overflow-hidden border-dark rounded-xl text-lg py-2 px-3 items-center text-dark flex justify-between flex-1;
+		@apply border z-10 transition-all duration-1000 overflow-hidden border-dark rounded-xl text-lg pl-3 items-center text-dark flex justify-between flex-1;
 	}
 
 	.icon-button {
-		@apply border border-dark p-px bg-gray-50 transition-scale;
+		@apply border border-dark p-px bg-gray-50;
 	}
 
 	.expandable {
@@ -58,7 +62,7 @@
 		padding-top: calc(10px + env(safe-area-inset-top));
 	}
 
-	.transition-scale {
-		@apply active:scale-110 transition-transform;
+	.active {
+		@apply brightness-90 scale-110;
 	}
 }

@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil'
 import { userAtom } from '../atoms'
 import { storage } from '../firebase'
 import { Recipe as RecipeType } from '../types'
+import Button from './Button'
 import { CheckmarkIcon, MinusIcon, PencilIcon, PlusIcon } from './icons'
 import TrashIcon from './icons/Trash.Icon'
 
@@ -138,13 +139,13 @@ export default function Recipe({
 			<div
 				onClick={() => setExpanded(prev => !prev)}
 				className="flex w-full justify-between items-center p-3">
-				<button
+				<Button
 					onClick={deleteRecipe}
 					className={` ${
 						editMode && '!w-5 !p-1 !mr-4 !border'
 					} box-content stroke-red-400 duration-500 w-0 p-0 mr-0 border-0  transition-all translate border-red-400 rounded-lg`}>
 					<TrashIcon />
-				</button>
+				</Button>
 				<input
 					type="text"
 					disabled={!editMode}
@@ -156,9 +157,11 @@ export default function Recipe({
 					onClick={e => e.stopPropagation()}
 					onChange={e => setInputs(prev => ({ ...prev, name: e.target.value }))}
 				/>
-				<button onClick={toggleEditMode} className="transition-scale stroke-dark w-6 ml-3">
+				<Button
+					onClick={toggleEditMode}
+					className="p-1 rounded-md box-content stroke-dark min-w-[24px] ml-3">
 					{editMode ? <CheckmarkIcon /> : <PencilIcon />}
-				</button>
+				</Button>
 			</div>
 
 			<div
@@ -173,11 +176,11 @@ export default function Recipe({
 				<div className="border-t border-dark p-3 ">
 					<div className="w-full justify-between items-center flex">
 						<div className="mb-2">Ingredients</div>
-						<button
+						<Button
 							onClick={() => addInput('ingredients')}
-							className="icon-button w-5 rounded-md bg-transparent">
+							className="icon-button bg-white w-5 rounded-md bg-transparent">
 							<PlusIcon />
-						</button>
+						</Button>
 					</div>
 					<ul className="text-sm ">
 						{inputs.ingredients.map((ingredient, i) => (
@@ -196,13 +199,13 @@ export default function Recipe({
 										}
 									/>
 								</div>
-								<button
+								<Button
 									onClick={() => deleteInput('ingredients', i)}
 									className={` ${
 										editMode && '!w-4'
 									} box-content stroke-red-400 stroke-2 scale-y-150 duration-300 w-0  transition-all translate border-red-400 rounded-lg`}>
 									<MinusIcon />
-								</button>
+								</Button>
 							</div>
 						))}
 					</ul>
@@ -210,11 +213,11 @@ export default function Recipe({
 				<div className="border-t border-dark p-3">
 					<div className="w-full justify-between items-center flex">
 						<div className="mb-2">Instructions</div>
-						<button
+						<Button
 							onClick={() => addInput('instructions')}
-							className="icon-button w-5 rounded-md bg-transparent">
+							className="icon-button bg-white w-5 rounded-md bg-transparent">
 							<PlusIcon />
-						</button>
+						</Button>
 					</div>
 					<ol className=" text-sm">
 						{inputs.instructions.map((instruction, i) => (
@@ -233,13 +236,13 @@ export default function Recipe({
 										}
 									/>
 								</div>
-								<button
+								<Button
 									onClick={() => deleteInput('instructions', i)}
 									className={` ${
 										editMode && '!w-4'
 									} box-content stroke-red-400 stroke-2 scale-y-150 duration-300 w-0  transition-all translate border-red-400 rounded-lg`}>
 									<MinusIcon />
-								</button>
+								</Button>
 							</div>
 						))}
 					</ol>

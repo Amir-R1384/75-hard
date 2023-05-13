@@ -2,6 +2,7 @@ import { MouseEvent, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { userAtom } from '../atoms'
 import { Workout as WorkoutType } from '../types'
+import Button from './Button'
 import Exercise from './Exercise'
 import { CheckmarkIcon, PencilIcon, PlusIcon } from './icons'
 import TrashIcon from './icons/Trash.Icon'
@@ -71,13 +72,13 @@ export default function Workout({ id, name, exercises, isNew }: Props) {
 				onClick={() => setExpanded(prev => !prev)}
 				className="flex w-full justify-between items-center p-3">
 				<div className="flex items-center">
-					<button
+					<Button
 						onClick={deleteWorkout}
 						className={` ${
 							editMode && '!w-5 !p-1 !mr-4 !border'
 						} box-content stroke-red-400 duration-500 w-0 p-0 mr-0 border-0  transition-all translate border-red-400 rounded-lg`}>
 						<TrashIcon />
-					</button>
+					</Button>
 					<input
 						type="text"
 						disabled={!editMode}
@@ -91,9 +92,11 @@ export default function Workout({ id, name, exercises, isNew }: Props) {
 					/>
 				</div>
 
-				<button onClick={toggleEditMode} className="transition-scale stroke-dark w-6 ml-3">
+				<Button
+					onClick={toggleEditMode}
+					className="p-1 rounded-md box-content stroke-dark min-w-[24px] ml-3">
 					{editMode ? <CheckmarkIcon /> : <PencilIcon />}
-				</button>
+				</Button>
 			</div>
 
 			<div
@@ -111,7 +114,7 @@ export default function Workout({ id, name, exercises, isNew }: Props) {
 					<Exercise key={i} {...exercise} editMode={editMode} setInputs={setInputs} />
 				))}
 
-				<button
+				<Button
 					onClick={addExercise}
 					className={`${
 						editMode ? 'max-h-[50px] border-t py-1' : ' max-h-0 border-0 py-0'
@@ -119,7 +122,7 @@ export default function Workout({ id, name, exercises, isNew }: Props) {
 					<div className="w-5">
 						<PlusIcon />
 					</div>
-				</button>
+				</Button>
 			</div>
 		</div>
 	)

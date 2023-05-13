@@ -2,6 +2,7 @@ import moment from 'moment'
 import { useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { calendarOpenAtom, userAtom } from '../atoms'
+import Button from './Button'
 import CalendarCell from './CalendarCell'
 import { CloseIcon, LeftIcon, RightIcon } from './icons'
 
@@ -77,19 +78,19 @@ export default function Calendar() {
 					: 'max-h-0 py-0 px-3 border-0 opacity-0 mt-0'
 			}  flex relative overflow-hidden transition-all duration-700 flex-col gap-y-3 text-dark border-dark rounded-2xl`}>
 			<div className="flex justify-center items-center gap-x-2">
-				<button
+				<Button
 					onClick={() => changeMonth('previous')}
-					className="border box-content bg-gray-100 transition-scale p-0.5 w-5 rounded-lg border-dark">
+					className="border box-content bg-gray-100  p-0.5 w-5 rounded-lg border-dark">
 					<LeftIcon />
-				</button>
+				</Button>
 				<div className="w-40 text-center">
 					{getCurrentMoment().format('MMMM')} {currentMonthYear.year}
 				</div>
-				<button
+				<Button
 					onClick={() => changeMonth('next')}
-					className="border box-content bg-gray-100 transition-scale p-0.5 w-5 rounded-lg border-dark">
+					className="border box-content bg-gray-100  p-0.5 w-5 rounded-lg border-dark">
 					<RightIcon />
-				</button>
+				</Button>
 			</div>
 
 			<div className="grid grid-cols-7 place-items-center gap-3 text-center">
@@ -110,11 +111,11 @@ export default function Calendar() {
 					)
 				)}
 			</div>
-			<button
+			<Button
 				onClick={() => setCalendarOpen(false)}
-				className="absolute right-3 transition-scale top-3 w-6 h-6 border rounded-lg border-dark p-px bg-gray-100">
+				className="absolute right-3 top-3 w-6 h-6 border rounded-lg border-dark p-px bg-gray-100">
 				<CloseIcon />
-			</button>
+			</Button>
 		</div>
 	)
 }
