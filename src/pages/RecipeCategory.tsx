@@ -9,19 +9,19 @@ export default function Recipes() {
 					<Link
 						to="/app/recipe"
 						state={{ category: 'breakfast' }}
-						className="py-10 bg-[#fce1e4] w-2/3 rounded-2xl active:brightness-90 font-medium grid place-content-center text-lg">
+						className="py-10 bg-[#fce1e4] w-2/3 rounded-2xl active:brightness-90 font-medium border border-dark grid place-content-center text-lg">
 						Breakfasts
 					</Link>
 					<Link
 						state={{ category: 'snack' }}
 						to="/app/recipe"
-						className="py-10 bg-[#ddedea] w-2/3 ml-[33%] rounded-2xl active:brightness-90 font-medium grid place-content-center text-lg">
+						className="py-10 bg-[#ddedea] w-2/3 ml-[33%] rounded-2xl active:brightness-90 font-medium border border-dark grid place-content-center text-lg">
 						Snacks
 					</Link>
 					<Link
 						state={{ category: 'meal' }}
 						to="/app/recipe"
-						className="py-10  bg-[#daeaf6] w-2/3 rounded-2xl active:brightness-90 font-medium grid place-content-center text-lg">
+						className="py-10  bg-[#daeaf6] w-2/3 rounded-2xl active:brightness-90 font-medium border border-dark grid place-content-center text-lg">
 						Meals
 					</Link>
 				</div>
