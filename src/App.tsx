@@ -34,6 +34,7 @@ export default function App() {
 				const blankUser = {
 					habits: {},
 					recentHabits: [],
+					todos: [],
 					workouts: [],
 					recipes: []
 				}

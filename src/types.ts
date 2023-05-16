@@ -5,6 +5,13 @@ export interface Habit {
 	completed: boolean
 }
 
+export interface Todo {
+	id: string
+	name: string
+	completed: boolean
+	date: string
+}
+
 export interface Workout {
 	id: string
 	name: string
@@ -29,6 +36,7 @@ export interface Recipe {
 export interface User {
 	recentHabits: Habit[]
 	habits: { [key: string]: Habit[] }
+	todos: Todo[]
 	workouts: Workout[]
 	recipes: Recipe[]
 }

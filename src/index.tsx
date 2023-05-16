@@ -5,7 +5,7 @@ import App from './App'
 import { Main } from './components'
 import './firebase'
 import './index.css'
-import { Habits, RecipeCategory, Recipes, Settings, Workouts } from './pages'
+import { Habits, RecipeCategory, Recipes, Settings, Todos, Workouts } from './pages'
 
 const router = createBrowserRouter([
 	{
@@ -15,6 +15,10 @@ const router = createBrowserRouter([
 			{
 				path: 'habits',
 				element: <Habits />
+			},
+			{
+				path: 'todos',
+				element: <Todos />
 			},
 			{
 				path: 'workouts',

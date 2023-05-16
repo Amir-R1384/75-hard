@@ -45,6 +45,7 @@ export const userAtom = atom<User>({
 	default: {
 		recentHabits: [],
 		habits: {},
+		todos: [],
 		workouts: [],
 		recipes: []
 	}

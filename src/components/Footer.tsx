@@ -4,6 +4,7 @@ export default function Footer() {
 	return (
 		<div className="flex fixed backdrop-blur-lg pt-3 bottom-0 justify-around items-center inset-bottom text-dark text-sm w-full z-50">
 			<FooterLink name="Habits" icon="chart" />
+			<FooterLink name="Todos" icon="check" />
 			<FooterLink name="Workouts" icon="dumbbell" />
 			<FooterLink name="Recipes" icon="book" />
 		</div>
@@ -29,8 +30,10 @@ function FooterLink({ name, icon }: Props) {
 				<ChartIcon isSelected={isSelected} />
 			) : icon === 'dumbbell' ? (
 				<DumbbellIcon isSelected={isSelected} />
-			) : (
+			) : icon === 'book' ? (
 				<BookIcon isSelected={isSelected} />
+			) : (
+				<CheckIcon isSelected={isSelected} />
 			)}
 			<div>{name}</div>
 		</Link>
@@ -40,7 +43,7 @@ function FooterLink({ name, icon }: Props) {
 function ChartIcon({ isSelected }: { isSelected: boolean }) {
 	return (
 		<svg
-			className={`${isSelected ? 'stroke-green fill-green' : 'stroke-dark'}`}
+			className={`${isSelected && ' fill-green'} stroke-dark`}
 			width="29"
 			height="26"
 			fill="none"
@@ -54,7 +57,7 @@ function ChartIcon({ isSelected }: { isSelected: boolean }) {
 function DumbbellIcon({ isSelected }: { isSelected: boolean }) {
 	return (
 		<svg
-			className={`${isSelected ? 'stroke-green fill-green' : 'stroke-dark'}`}
+			className={`${isSelected && ' fill-green'} stroke-dark`}
 			width="43"
 			height="26"
 			fill="none"
@@ -68,13 +71,30 @@ function DumbbellIcon({ isSelected }: { isSelected: boolean }) {
 function BookIcon({ isSelected }: { isSelected: boolean }) {
 	return (
 		<svg
-			className={`${isSelected ? 'stroke-green fill-green' : 'stroke-dark'}`}
+			className={`${isSelected && ' fill-green'} stroke-dark`}
 			width="28"
 			height="26"
 			viewBox="0 0 28 26"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">
 			<path d="M24.6758 22.375V22.875H25.1758C26.0159 22.875 26.5385 23.4281 26.5385 23.9375C26.5385 24.4469 26.0159 25 25.1758 25H23.3132H6.54945C3.6547 25 1.46154 23.0455 1.46154 20.8125V5.1875C1.46154 2.95445 3.6547 1 6.54945 1H23.3132H25.1758C26.0159 1 26.5385 1.55309 26.5385 2.0625V17.6875C26.5385 18.1969 26.0159 18.75 25.1758 18.75H24.6758V19.25V22.375ZM21.9506 19.25V18.75H21.4506H6.54945C5.32894 18.75 4.18681 19.5934 4.18681 20.8125C4.18681 22.0316 5.32894 22.875 6.54945 22.875H21.4506H21.9506V22.375V19.25ZM9.34341 6.25C8.64094 6.25 7.91209 6.74672 7.91209 7.53125C7.91209 8.31578 8.64094 8.8125 9.34341 8.8125H20.5192C21.2217 8.8125 21.9506 8.31578 21.9506 7.53125C21.9506 6.74672 21.2217 6.25 20.5192 6.25H9.34341ZM20.5192 9.375H9.34341C8.64094 9.375 7.91209 9.87172 7.91209 10.6562C7.91209 11.4408 8.64094 11.9375 9.34341 11.9375H20.5192C21.2217 11.9375 21.9506 11.4408 21.9506 10.6562C21.9506 9.87172 21.2217 9.375 20.5192 9.375Z" />
+		</svg>
+	)
+}
+
+function CheckIcon({ isSelected }: { isSelected: boolean }) {
+	return (
+		<svg
+			className={`${isSelected && ' fill-green'} stroke-dark`}
+			width="42"
+			height="26"
+			viewBox="0 0 42 41"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg">
+			<path
+				d="M6.8 1.5C3.6561 1.5 1.1 3.94959 1.1 6.9625V34.275C1.1 37.2879 3.6561 39.7375 6.8 39.7375H35.3C38.4439 39.7375 41 37.2879 41 34.275V6.9625C41 3.94959 38.4439 1.5 35.3 1.5H6.8ZM31.1141 16.6072L19.7141 27.5322C18.8769 28.3345 17.5231 28.3345 16.6948 27.5322L10.9948 22.0697C10.1577 21.2674 10.1577 19.9701 10.9948 19.1763C11.832 18.3825 13.1858 18.374 14.0141 19.1763L18.2 23.1878L28.0859 13.7053C28.9231 12.903 30.2769 12.903 31.1052 13.7053C31.9334 14.5076 31.9423 15.8049 31.1052 16.5987L31.1141 16.6072Z"
+				strokeWidth="2"
+			/>
 		</svg>
 	)
 }
