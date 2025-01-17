@@ -5,11 +5,11 @@ import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_FB_API_KEY,
-	authDomain: 'hard-e8079.firebaseapp.com',
-	projectId: 'hard-e8079',
-	storageBucket: 'hard-e8079.appspot.com',
-	messagingSenderId: '235605353349',
-	appId: '1:235605353349:web:3537cdbb44bad7a5099aec'
+	authDomain: import.meta.env.VITE_FB_AUTH_DOMAIN,
+	projectId: import.meta.env.VITE_FB_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_FB_STORAGE_BUCKET,
+	messagingSenderId: (import.meta.env.VITE_FB_MESSAGING_SENDER_ID = 235605353349),
+	appId: import.meta.env.VITE_FB_APP_ID
 }
 
 const app = initializeApp(firebaseConfig)
@@ -37,4 +37,4 @@ const usersCollection = collection(db, 'users')
 // * Storage
 const storage = getStorage(app)
 
-export { auth, authenticate, usersCollection, storage }
+export { auth, authenticate, storage, usersCollection }
