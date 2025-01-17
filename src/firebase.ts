@@ -4,12 +4,12 @@ import { collection, getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
-	apiKey: import.meta.env.VITE_FB_API_KEY,
-	authDomain: import.meta.env.VITE_FB_AUTH_DOMAIN,
-	projectId: import.meta.env.VITE_FB_PROJECT_ID,
-	storageBucket: import.meta.env.VITE_FB_STORAGE_BUCKET,
-	messagingSenderId: (import.meta.env.VITE_FB_MESSAGING_SENDER_ID = 235605353349),
-	appId: import.meta.env.VITE_FB_APP_ID
+	apiKey: import.meta.env.VITE_FB_API_KEY! as string,
+	authDomain: import.meta.env.VITE_FB_AUTH_DOMAIN! as string,
+	projectId: import.meta.env.VITE_FB_PROJECT_ID! as string,
+	storageBucket: import.meta.env.VITE_FB_STORAGE_BUCKET! as string,
+	messagingSenderId: import.meta.env.VITE_FB_MESSAGING_SENDER_ID! as string,
+	appId: import.meta.env.VITE_FB_APP_ID! as string
 }
 
 const app = initializeApp(firebaseConfig)
